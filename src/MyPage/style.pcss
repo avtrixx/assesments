@@ -1,0 +1,68 @@
+import { React, useState ,useEffect } from "react";
+
+const MyPage = ()=>{
+    
+const [hex,setHex]= useState("#ffffff");
+const randomizedHex= () => {
+    const randomeColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    setHex(randomeColor);
+}
+useEffect(() => {
+    const canvas = document.getElementById('myCanvas');
+    if(canvas){
+        abc(canvas);
+    }
+  
+}, [])
+
+const abc =(canvas)=>{
+    console.log(canvas,'***************');
+    
+  
+    const ctx =  canvas.getContext('2d');
+    
+    for (let i = 0; i < 256; i++) {
+      for (let j = 0; j < 128; j++) {
+        ctx.fillStyle = `rgb(
+            ${i},
+            ${j},
+            0)`;
+        ctx.fillRect(i*3, j*3, 2, 2);
+      }
+    }
+}
+
+
+const  handleClick =() =>{ 
+            var img = new Image(); 
+            img.src =  
+'https://media.geeksforgeeks.org/wp-content/uploads/20190529122828/bs21.png'; 
+            document.getElementById('body').appendChild(img); 
+          
+        }  
+
+    return (
+        <>
+       
+        <canvas id="myCanvas" width="1000" height="2000" >
+     Your browser does not support the HTML5 canvas tag.</canvas>
+     <button onClick = {randomizedHex}>Generate Random Color</button>
+     </>
+//         <div style={{
+//             backgroundColor:`${hex}`,
+//             minHeight:" 33.34vh",
+//             overflow: "hidden",
+//             zoom: 3,
+//         }}>
+//         <h1>{hex}</h1>
+//         <body id = "body"> 
+        
+//         {/* <button onClick = {randomizedHex}>Generate Random Color</button>
+//         <button onClick= {()=> navigator.clipboard.writeText(hex)}>Copy Color Code</button> */}
+//          <canvas id="myCanvas" width="1000" height="2000" style="">
+// Your browser does not support the HTML5 canvas tag.</canvas>
+//          </body> 
+//         </div>
+    )
+}
+export default (MyPage);
