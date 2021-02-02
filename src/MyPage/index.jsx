@@ -1,4 +1,4 @@
-import { React, useState ,useEffect } from "react";
+import { React, useEffect } from "react";
 
 const MyPage = ()=>{
   
@@ -51,7 +51,7 @@ function Init()
 	
 	for(var x = 0; x < width; x++)
 	{
-		grid.push(new Array());
+		grid.push([]);
 		for(var y = 0; y < height; y++)
 		{
 			grid[x].push(0); //Set up the grid
@@ -85,7 +85,7 @@ function Init()
 				}
 				else
 				{
-					if(prevPositions.length != 0)
+					if(prevPositions.length !== 0)
 					{
 						currentPos = prevPositions.pop();
 					}
@@ -136,7 +136,7 @@ function Update()
 				}
 				else
 				{
-					if(prevPositions.length != 0)
+					if(prevPositions.length !== 0)
 					{
 						currentPos = prevPositions.pop(); //pop to previous position where spaces are available
 					}
@@ -168,48 +168,49 @@ function CheckForSpaces(inGrid) //Checks for available spaces then returns back 
 	
 	if(currentPos.x > 0)
 	{
-		if(inGrid[currentPos.x - 1][currentPos.y] == 0)
+		if(inGrid[currentPos.x - 1][currentPos.y] === 0)
 		{
 			availableSpaces.push(new Point(currentPos.x - 1, currentPos.y));
 		}
 	}
-	else if(inGrid[width - 1][currentPos.y] == 0)
+	else if(inGrid[width - 1][currentPos.y] === 0)
 	{
 		availableSpaces.push(new Point(width - 1, currentPos.y));
 	}
 	
 	if(currentPos.x < width - 1)
 	{
-		if(inGrid[currentPos.x + 1][currentPos.y] == 0)
+		if(inGrid[currentPos.x + 1][currentPos.y] === 0)
 		{
 			availableSpaces.push(new Point(currentPos.x + 1, currentPos.y));
 		}
 	}
-	else if(inGrid[0][currentPos.y] == 0)
+	else if(inGrid[0][currentPos.y] === 0)
 	{
 		availableSpaces.push(new Point(0, currentPos.y));
 	}
 	
 	if(currentPos.y > 0)
 	{
-		if(inGrid[currentPos.x][currentPos.y - 1] == 0)
+		
+		if(inGrid[currentPos.x][currentPos.y - 1] === 0)
 		{
 			availableSpaces.push(new Point(currentPos.x, currentPos.y - 1));
 		}
 	}
-	else if(inGrid[currentPos.x][height - 1] == 0)
+	else if(inGrid[currentPos.x][height - 1] === 0)
 	{
 		availableSpaces.push(new Point(currentPos.x, height - 1));
 	}
 	
 	if(currentPos.y < height - 1)
 	{
-		if(inGrid[currentPos.x][currentPos.y + 1] == 0)
+		if(inGrid[currentPos.x][currentPos.y + 1] === 0)
 		{
 			availableSpaces.push(new Point(currentPos.x, currentPos.y + 1));
 		}
 	}
-	else if(inGrid[currentPos.x][0] == 0)
+	else if(inGrid[currentPos.x][0] === 0)
 	{
 		availableSpaces.push(new Point(currentPos.x, 0));
 	}
@@ -259,8 +260,7 @@ function Color(r, g, b)
 	}
 }
 useEffect(() => {
-  Init();
-  
+  Init(); 
 }, [])
 
   return(
