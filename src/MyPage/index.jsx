@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React } from "react";
 
 const MyPage = ()=>{
   
@@ -192,7 +192,7 @@ function CheckForSpaces(inGrid) //Checks for available spaces then returns back 
 	
 	if(currentPos.y > 0)
 	{
-		
+
 		if(inGrid[currentPos.x][currentPos.y - 1] === 0)
 		{
 			availableSpaces.push(new Point(currentPos.x, currentPos.y - 1));
@@ -259,17 +259,15 @@ function Color(r, g, b)
 		this.saturation = (this.max - this.min) / (2 - this.max - this.min);
 	}
 }
-useEffect(() => {
-  Init(); 
-}, [])
+
 
   return(
-    <div>
+    <body onLoad="Init()" >
       <canvas id="canvas" width="256" height="128"/>
     <h1 style={{
       color :'Red'
     }}> The Image </h1>  
-    </div>
+    </body>
      	
   )
 }
